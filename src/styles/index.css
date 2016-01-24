@@ -1,0 +1,86 @@
+*, *::after, *::before {box-sizing: border-box}
+
+html, body {height: 100%}
+
+body {
+  font-family: arial;
+  background: #eee
+}
+
+.todoList-container {
+  padding: 1em;
+  width: 650px;
+  margin: 1em auto;
+  background: white;
+  border: 1px solid #ccc;
+}
+
+.todoList-title {
+  font-size: 1.4em;
+}
+
+.todoList-form {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+  padding: .5em;
+  background: #f5f5f5;
+  border: 1px solid #eee;
+}
+.todoList-input {
+  flex: 1;
+  margin-right: 1em;
+  padding: .5em
+}
+.todoList-btnAdd {
+
+}
+.todoList-todos {
+  display: flex;
+}
+
+.todoList-filter {
+
+}
+
+.todoList-filerList {
+  list-style: none;
+  margin: 1em 0;
+  padding: 0
+}
+
+.todoList-filterItem-active {
+  text-decoration: underline;
+}
+
+[class^="todoList-filterItem"] button {
+  background: none;
+  border: 0
+}
+
+.todoList-list {
+  margin: 1em;
+  padding: 1em;
+  flex: 1;
+  border: 1px solid #f5f5f5;
+}
+.todoList-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 0;
+}
+.todoList-item:nth-child(even) {border-top: 1px solid #eee}
+.todoList-label {
+
+}
+.todoList-btnGroup {
+
+}
+.todoList-btnDone {
+
+}
+.todoList-btnReset {
+
+}

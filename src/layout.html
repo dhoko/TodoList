@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <section class="todoList-container">
+
+    <h1 class="todoList-title">Tâches à effectuer</h1>
+
+    <form
+      action="#"
+      class="todoList-form"
+      novalidate>
+
+      <input
+        class="todoList-input"
+        placeholder="Saisir une nouvelle tâche">
+      <button class="todoList-btnAdd">Ajouter</button>
+    </form>
+
+    <div class="todoList-todos">
+      <nav class="todoList-filter">
+        <ul class="todoList-filerList">
+          <li class="todoList-filterItem-1">
+            <button data-action="todo" class="todoList-filterItem-active">En cours</button>
+          </li>
+          <li class="todoList-filterItem-2">
+            <button data-action="done">Terminés</button>
+          </li>
+          <li class="todoList-filterItem-3">
+            <button data-action="reset">Annulés</button>
+          </li>
+        </ul>
+      </nav>
+
+      <ul class="todoList-list">
+        <li
+          class="todoList-item"
+          ng-repeat="todo in todos track by todo.id">
+          <span class="todoList-label">{{ ::todo.label }}</span>
+
+          <div class="todoList-btnGroup">
+            <button class="todoList-btnDelete">Supprimer</button>
+            <button class="todoList-btnDone" data-action="done">Terminer</button>
+            <button class="todoList-btnReset" type="reset" data-action="reset">Annuler</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+  <script src="app.js"></script>
+  <script src="vendor.min.js"></script>
+</body>
+</html>
