@@ -24,6 +24,9 @@ gulp.task('layout', require('./tasks/layout'));
 // Concatenate your app and build an app.js
 gulp.task('scripts', require('./tasks/app'));
 
+// Create doc
+gulp.task('doc', require('./tasks/documentation'));
+
 // Build my css
 gulp.task('styles', require('./tasks/styles'));
 

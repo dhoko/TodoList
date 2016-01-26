@@ -5,50 +5,17 @@
   <title>Document</title>
   <link rel="stylesheet" href="styles/main.css">
 </head>
-<body>
+<body ng-app="todoList">
   <section class="todoList-container">
 
     <h1 class="todoList-title">Tâches à effectuer</h1>
 
-    <form
-      action="#"
-      class="todoList-form"
-      novalidate>
-
-      <input
-        class="todoList-input"
-        placeholder="Saisir une nouvelle tâche">
-      <button class="todoList-btnAdd">Ajouter</button>
-    </form>
+    <todo-list-form></todo-list-form>
 
     <div class="todoList-todos">
-      <nav class="todoList-filter">
-        <ul class="todoList-filerList">
-          <li class="todoList-filterItem-1">
-            <button data-action="todo" class="todoList-filterItem-active">En cours</button>
-          </li>
-          <li class="todoList-filterItem-2">
-            <button data-action="done">Terminés</button>
-          </li>
-          <li class="todoList-filterItem-3">
-            <button data-action="reset">Annulés</button>
-          </li>
-        </ul>
-      </nav>
+      <todo-list-filter-todo></todo-list-filter-todo>
 
-      <ul class="todoList-list">
-        <li
-          class="todoList-item"
-          ng-repeat="todo in todos track by todo.id">
-          <span class="todoList-label">{{ ::todo.label }}</span>
-
-          <div class="todoList-btnGroup">
-            <button class="todoList-btnDelete">Supprimer</button>
-            <button class="todoList-btnDone" data-action="done">Terminer</button>
-            <button class="todoList-btnReset" type="reset" data-action="reset">Annuler</button>
-          </div>
-        </li>
-      </ul>
+      <todo-list-component></todo-list-component>
     </div>
 
   </section>
