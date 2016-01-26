@@ -1,11 +1,7 @@
 {
-  "name": "NgServal",
-  "version": "3.0.0",
-  "description": "A boilerplate for Angular ES2015 ready",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/dhoko/NgServal.git"
-  },
+  "name": "TodoList",
+  "version": "1.0.0",
+  "description": "A totodist with Angular",
   "scripts": {
     "start": "gulp",
     "prebuild": "npm i --production",
@@ -23,10 +19,6 @@
   ],
   "author": "dhoko",
   "license": "BSD-2-Clause",
-  "bugs": {
-    "url": "https://github.com/dhoko/NgServal/issues"
-  },
-  "homepage": "https://github.com/dhoko/NgServal",
   "devDependencies": {
     "body-parser": "^1.14.1",
     "cli-color": "^1.0.0",
