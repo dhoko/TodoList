@@ -1,7 +1,7 @@
 # TodoList
 
-.1 `npm i`
-.2 `npm start`
+- 1 `npm i`
+- 2 `npm start`
 
 ## Traduire cette page HTML en app Angular.
 
