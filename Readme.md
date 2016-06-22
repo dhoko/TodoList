@@ -1,5 +1,8 @@
 # TodoList
 
+.1 `npm i`
+.2 `npm start`
+
 ## Traduire cette page HTML en app Angular.
 
 - On ajoute une nouvelle todo via le formulaire,
@@ -34,3 +37,23 @@ Source [Dispatcher](https://gist.github.com/dhoko/9ef1517c56401bbea6c5) pour l'a
 
 
 ## Application Angular [Source](https://github.com/dhoko/TodoList/tree/feat/angular)
+## Documentation [Documentation complète](http://cpp.li/todoListAngularDoc/)
+
+## Exemple avancé: Mettre en place un logger
+
+Par exemple on peut mettre ça dans `todoListModel`.
+
+```js
+const log = (dispatcher) => {
+  const ghost = dispatcher.dispatch;
+  dispatcher.dispatch = (action, data) => {
+    console.group(`Action: ${action}`);
+    console.log(data);
+    console.groupEnd(`Action: ${action}`);
+    ghost(action, data);
+  };
+  return dispatcher
+};
+
+dispatcher = log(dispatcher);
+```
