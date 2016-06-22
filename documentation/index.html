@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>index.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>index.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>Declaration du module, par son nom puis de ses dépendances (<em>ici vides</em>)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular
+  .module(<span class="hljs-string">'todoList'</span>, [])</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Run est une fonction qui se lance lors du démarrage de l’application.</p>
+<blockquote>
+<p>Une fois uniquement</p>
+</blockquote>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>On injecte le model</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  .run((todoListModel) =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>On initialise le model</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    todoListModel.init();
+  });
+
+
+----------------------------------------------------------------------------</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>On utilise le getter de module Angular</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'todoList'</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>On déclare une directive où l’on injecte le <em>dispatcher</em></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'todoListComponent'</span>, (dispatcher) =&gt; ({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Déclaration d’un scope isolé</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    scope: {},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>On remplace le tag HTML <code>&lt;todo-list-component&gt;</code> par le template</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    replace: <span class="hljs-literal">true</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Déclaration du template à afficher</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    template: (<span class="hljs-string">`
+      &lt;ul class="todoList-list"&gt;
+
+        &lt;!--
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>On va boucler sur toutes les todos dans le model</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>         --&gt;
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">todo-list-item</span>
+          <span class="hljs-attr">ng-repeat</span>=<span class="hljs-string">"todo in todos track by todo.id"</span>
+          <span class="hljs-attr">data-model</span>=<span class="hljs-string">"todo"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">todo-list-item</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    `),
+    link(scope, el) {
+
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>On affiche les donnée lors de l’action change, où l’on reçoit en paramètre la liste à afficher.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      dispatcher
+        .on(<span class="hljs-string">'CHANGE'</span>, list =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Nous sommes hors du cycle de vie du <em>$scope</em>, on informe donc la <em>$digest</em> qu’elle va devoir effectuer cette action.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          scope
+            .$applyAsync(() =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Attache les données du model dans le scope</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>              scope.todos = list;
+            });
+        })
+    }
+  }));
+
+
+----------------------------------------------------------------------------</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>On utilise le getter de module Angular</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'todoList'</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>On déclare une directive où l’on injecte le <em>dispatcher</em></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'todoListCurrentFilter'</span>, (dispatcher) =&gt; ({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>On utilisera cette directive en tant qu’attribut HTML.
+On ne déclare pas de scope isolé pour cette directive</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    link(scope, el, attr) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>On écoute le fait de changer le <strong>filtre d’affichage</strong> et en conséquence on ajoute ou supprime une classe si notre élément active ce filtre.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      dispatcher
+        .on(<span class="hljs-string">'CURRENT_FILTER'</span>, status =&gt; {
+
+          <span class="hljs-keyword">if</span> (status === attr.action) {
+            el.addClass(<span class="hljs-string">'todoList-filterItem-active'</span>);
+          }
+          <span class="hljs-keyword">else</span> {
+            el.removeClass(<span class="hljs-string">'todoList-filterItem-active'</span>);
+          }
+        });
+    }
+  }));
+
+
+----------------------------------------------------------------------------</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>On utilise le getter de module Angular</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'todoList'</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>On déclare une directive où l’on injecte le <em>dispatcher</em></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'todoListFilterTodo'</span>, (dispatcher) =&gt; ({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Déclaration d’un scope isolé</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    scope: {},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>On remplace le tag HTML <code>&lt;todo-list-filter-todo&gt;</code> par le template</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    replace: <span class="hljs-literal">true</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Déclaration du template à afficher</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    template: (<span class="hljs-string">`
+      &lt;nav class="todoList-filter"&gt;
+        &lt;ul class="todoList-filerList"&gt;
+          &lt;li class="todoList-filterItem-1"&gt;
+
+            &lt;!--
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <blockquote>
+<p>L’attribut `data-todo-list-current-filter` correspond à la directive du même nom.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>             --&gt;
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+              <span class="hljs-attr">data-todo-list-current-filter</span>
+              <span class="hljs-attr">data-action</span>=<span class="hljs-string">"todo"</span>
+              <span class="hljs-attr">class</span>=<span class="hljs-string">"todoList-filterItem-active"</span>&gt;</span>En cours<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"todoList-filterItem-2"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+              <span class="hljs-attr">data-todo-list-current-filter</span>
+              <span class="hljs-attr">data-action</span>=<span class="hljs-string">"done"</span>&gt;</span>Terminés<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"todoList-filterItem-3"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+              <span class="hljs-attr">data-todo-list-current-filter</span>
+              <span class="hljs-attr">data-action</span>=<span class="hljs-string">"reset"</span>&gt;</span>Annulés<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+    `),
+    link(scope, el) {
+
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>On séléctionne les boutons uniquement, c’est en quelque sorte un filtre.
+El correspondant au template compilé où il y a d’autres tags que BUTTON</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      el
+        .find(<span class="hljs-string">'button'</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>On écoute le click et on récupère uniquement la clé <code>target</code> de l’event qui arrive en tant que paramètre lors d’un click.
+On pourrait récuperer ce dernier et faire <code>e.target</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        .on(<span class="hljs-string">'click'</span>, ({target}) =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Emet une action <strong>CURRENT_FILTER</strong> avec en paramètre la valeur du filtre qui se trouve sur le bouton, dans l’attribut <code>data-action</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          dispatcher.dispatch(<span class="hljs-string">'CURRENT_FILTER'</span>, target.getAttribute(<span class="hljs-string">'data-action'</span>));
+        });
+    }
+  }));
+
+
+----------------------------------------------------------------------------</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>On utilise le getter de module Angular</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'todoList'</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>On déclare une directive où l’on injecte le <em>dispatcher</em>,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'todoListForm'</span>, (dispatcher) =&gt; ({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Déclaration d’un scope isolé</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    scope: {},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>On remplace le tag HTML <code>&lt;todo-list-form&gt;</code> par le template</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    replace: <span class="hljs-literal">true</span>,
+    template: (<span class="hljs-string">`
+      &lt;form
+        action="#"
+        class="todoList-form"
+        novalidate&gt;
+
+        &lt;!--
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>On ajoute un <strong>ng-model</strong> sur l’input afin de pouvoir récupérer la valeur de ce dernier lors de la soumission du formulaire.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        --&gt;
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+          <span class="hljs-attr">class</span>=<span class="hljs-string">"todoList-input"</span>
+          <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"newTodo"</span>
+          <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Saisir une nouvelle tâche"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"todoList-btnAdd"</span>&gt;</span>Ajouter<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+    `),
+    link(scope, el) {
+
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>On écoute lorsque l’utilisateur va soumettre le formulaire</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      el</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>On va récupérer aussi l’event qui est émit</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        .on(<span class="hljs-string">'submit'</span>, (e) =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>On va empêcher le comportement par défault de cet event submit, qui est de reload la page.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          e.preventDefault();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>On informare l’application qu’on souhaite créer une nouvelle todo, on récupère la valeur de l’input via le scope.</p>
+<blockquote>
+<p>On utilise <code>scope.newTodo</code> car nous avons dans le template sur l’input <code>ng-model=&quot;newTodo</code></p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          dispatcher.dispatch(<span class="hljs-string">'ADD'</span>, scope.newTodo);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>Vide l’input</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          scope.newTodo = <span class="hljs-string">''</span>;
+        });
+    }
+  }));
+
+
+----------------------------------------------------------------------------</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>On utilise le getter de module Angular</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'todoList'</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>On déclare une directive où l’on injecte le <em>dispatcher</em></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'todoListItem'</span>, (dispatcher) =&gt; ({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>Déclaration d’un scope isolé, avec une clé todo dedans.
+La valeur de todo provient d’un attribut model dans la déclaration de la directive:
+<code>&lt;todo-list-item data-model=&quot;xxx&quot;&gt;</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    scope: {
+      todo: <span class="hljs-string">'=model'</span>
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p>On remplace le tag HTML <code>&lt;todo-list-item&gt;</code> par le template</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    replace: <span class="hljs-literal">true</span>,
+    template: (<span class="hljs-string">`
+      &lt;li class="todoList-item"&gt;
+        &lt;span class="todoList-label"&gt;{{ ::todo.label }}&lt;/span&gt;
+        &lt;todo-list-status data-model="todo"&gt;&lt;/todo-list-status&gt;
+      &lt;/li&gt;
+    `</span>)
+  }));
+
+
+----------------------------------------------------------------------------</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <p>On utilise le getter de module Angular</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'todoList'</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              <p>On déclare une directive où l’on injecte le <em>dispatcher</em></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'todoListRemove'</span>, (dispatcher) =&gt; ({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-43">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-43">&#182;</a>
+              </div>
+              <p>Déclaration d’un scope isolé, avec une clé todo dedans.
+La valeur de todo provient d’un attribut model dans la déclaration de la directive:
+<code>&lt;todo-list-remove data-model=&quot;xxx&quot;&gt;</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    scope: {
+      todo: <span class="hljs-string">'=model'</span>
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-44">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-44">&#182;</a>
+              </div>
+              <p>On remplace le tag HTML <code>&lt;todo-list-remove&gt;</code> par le template</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    replace: <span class="hljs-literal">true</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-45">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-45">&#182;</a>
+              </div>
+              <p>Déclaration du template à afficher</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    template: <span class="hljs-string">`&lt;button class="todoList-btnDelete"&gt;Supprimer&lt;/button&gt;`</span>,
+    link(scope, el) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <p>Action à déclancher lors d’un click sur ce bouton.
+On va informer l’application que l’on souhaite supprimer une todo.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">const</span> onClick = () =&gt; dispatcher.dispatch(<span class="hljs-string">'REMOVE'</span>, scope.todo);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p>On écoute le click</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      el.on(<span class="hljs-string">'click'</span>, onClick);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <p>Losque que cette directive ne va plus s’afficher, c’est à dire:</p>
+<ul>
+<li>Change de status de todo à done</li>
+<li>On va afficher uniquement les todos de status todo</li>
+<li>On ne va plus afficher celles !todo</li>
+<li>Angular va détruire <em>cette directive pour cette todo</em></li>
+</ul>
+<blockquote>
+<p>Il faut supprimer les listeners afin de ne pas laisser en mémoire des écouteurs sur des éléments qui ne sont plus dans le dom.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      scope
+        .$on(<span class="hljs-string">'$destroy'</span>, () =&gt; {
+          el.off(<span class="hljs-string">'click'</span>, onClick);
+        });
+    }
+  }));
+
+
+----------------------------------------------------------------------------</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
+              </div>
+              <p>On utilise le getter de module Angular</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'todoList'</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <p>On déclare une directive où l’on injecte le <em>dispatcher</em></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  .directive(<span class="hljs-string">'todoListStatus'</span>, (dispatcher) =&gt; ({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
+              </div>
+              <p>Déclaration d’un scope isolé, avec une clé todo dedans.
+La valeur de todo provient d’un attribut model dans la déclaration de la directive:
+<code>&lt;todo-list-status data-model=&quot;xxx&quot;&gt;</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    scope: {
+      todo: <span class="hljs-string">'=model'</span>
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-52">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-52">&#182;</a>
+              </div>
+              <p>On remplace le tag HTML <code>&lt;todo-list-status&gt;</code> par le template</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    replace: <span class="hljs-literal">true</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-53">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
+              </div>
+              <p>Déclaration du template à afficher</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    template: (<span class="hljs-string">`
+      &lt;div class="todoList-btnGroup"&gt;
+        &lt;!--
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-54">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-54">&#182;</a>
+              </div>
+              <p>`ng-show` : Afficher le bouton uniquement lorsque le status de la todo n’est pas <em>En cours</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        --&gt;
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">todo-list-remove</span>
+          <span class="hljs-attr">ng-show</span>=<span class="hljs-string">"'todo' !== todo.status"</span>
+          <span class="hljs-attr">data-model</span>=<span class="hljs-string">"todo"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">todo-list-remove</span>&gt;</span>
+
+        <span class="hljs-comment">&lt;!--
+</span></span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-55">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-55">&#182;</a>
+              </div>
+              <p>`ng-show` : Afficher le bouton uniquement lorsque le status de la todo n’est pas <em>Terminé</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        --&gt;
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+          <span class="hljs-attr">class</span>=<span class="hljs-string">"todoList-btnDone"</span>
+          <span class="hljs-attr">ng-show</span>=<span class="hljs-string">"'done' !== todo.status"</span>
+          <span class="hljs-attr">data-action</span>=<span class="hljs-string">"done"</span>&gt;</span>Terminer<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+
+        <span class="hljs-comment">&lt;!--
+</span></span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-56">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-56">&#182;</a>
+              </div>
+              <p>`ng-show` : Afficher le bouton uniquement lorsque le status de la todo n’est pas <em>Annulé</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        --&gt;
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+          <span class="hljs-attr">class</span>=<span class="hljs-string">"todoList-btnReset"</span>
+          <span class="hljs-attr">type</span>=<span class="hljs-string">"reset"</span>
+          <span class="hljs-attr">ng-show</span>=<span class="hljs-string">"'reset' !== todo.status"</span>
+          <span class="hljs-attr">data-action</span>=<span class="hljs-string">"reset"</span>&gt;</span>Annuler<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    `),
+    link(scope, el) {
+
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-57">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-57">&#182;</a>
+              </div>
+              <p>Action que l’on va déclancher lors du click, on récupère uniquement la clé <code>target</code> de l’event qui arrive en tant que paramètre lors d’un click.
+On pourrait récuperer ce dernier et faire <code>e.target</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">const</span> onClick = ({target}) =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-58">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-58">&#182;</a>
+              </div>
+              <p>Vérification pour savoir si on click bien sur un bouton d’action pour le status</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (target.hasAttribute(<span class="hljs-string">'data-action'</span>)) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-59">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
+              </div>
+              <p>On émet une action <strong>SET_STATUS</strong> pour informer l’application qu’une todo souhaite changer de status
+On va envoyer en paramètre un object avec deux clés</p>
+<ul>
+<li>todo</li>
+<li>status</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          dispatcher.dispatch(<span class="hljs-string">'SET_STATUS'</span>, {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-60">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-60">&#182;</a>
+              </div>
+              <p>La todo qui souhaite changer</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            todo: scope.todo,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-61">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-61">&#182;</a>
+              </div>
+              <p>Le status qu’elle souhaite obtenir</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            status: target.getAttribute(<span class="hljs-string">'data-action'</span>)
+          });
+        }
+      };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-62">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-62">&#182;</a>
+              </div>
+              <p>On écoute le click</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      el.on(<span class="hljs-string">'click'</span>, onClick);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-63">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-63">&#182;</a>
+              </div>
+              <p>Losque que cette directive ne va plus s’afficher, c’est à dire:</p>
+<ul>
+<li>Change de status de todo à done</li>
+<li>On va afficher uniquement les todos de status todo</li>
+<li>On ne va plus afficher celles !todo</li>
+<li>Angular va détruire <em>cette directive pour cette todo</em></li>
+</ul>
+<blockquote>
+<p>Il faut supprimer les listeners afin de ne pas laisser en mémoire des écouteurs sur des éléments qui ne sont plus dans le dom.</p>
+</blockquote>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      scope
+        .$on(<span class="hljs-string">'$destroy'</span>, () =&gt; {
+          el.off(<span class="hljs-string">'click'</span>, onClick);
+        });
+    }
+  }));
+
+
+----------------------------------------------------------------------------</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-64">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-64">&#182;</a>
+              </div>
+              <p>On utilise le getter de module Angular</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'todoList'</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-65">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-65">&#182;</a>
+              </div>
+              <p>On déclare une nouvelle factory, qui ne reçoit pas de dépendances</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  .factory(<span class="hljs-string">'dispatcher'</span>, () =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-66">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-66">&#182;</a>
+              </div>
+              <p>On déclare une factory.
+On va pouvoir s’en servir pour communiquer au sein de l’application via deux méthodes:</p>
+<ul>
+<li>dispatch(ACTION, DATA)</li>
+<li>on(ACTION, CALLBACK) // Cette fonction retourne sa méthode unsubscribe</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-comment">/**
+     * @param  {String} name Namespace
+     * @return {Object}
+     */</span>
+    <span class="hljs-keyword">const</span> dispatcher = name =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-67">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-67">&#182;</a>
+              </div>
+              <p>Initialise une map (<em><key> = <value></em>)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">let</span> map = {};
+      <span class="hljs-keyword">const</span> noop = () =&gt; {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-68">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-68">&#182;</a>
+              </div>
+              <p>Lister tous les events pour une clé spécifique pour un namespace</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">const</span> getEventList = key =&gt; {
+        <span class="hljs-keyword">const</span> event = name + key;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-69">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-69">&#182;</a>
+              </div>
+              <p>Si c’est la première fois on créé un tableau vide pour cette identifiant</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (!map[event]) {
+          map[event] = [];
+        }
+        <span class="hljs-keyword">return</span> map[event];
+      }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-70">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-70">&#182;</a>
+              </div>
+              <p>Emet une action avec de la data, on peut ainsi communiquer avec un autre composant de notre application qui écoute cette action.
+On peut écouter plusieurs fois cette action.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-comment">/**
+       * @param  {String} key  ACTION
+       * @param  {Object} data Donnée à faire transiter
+       * @return {void}
+       */</span>
+      <span class="hljs-keyword">const</span> dispatch = (key, data) =&gt; getEventList(key).forEach(cb =&gt; cb(data));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-71">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-71">&#182;</a>
+              </div>
+              <p>Ecoute une action et déclanche un callback si cette action arrive.
+Ce callback reçoit en paramètre la data que l’on fait transiter.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-comment">/**
+       * @param  {String}   key      ACTION
+       * @param  {Function} callback ce callback recoit 1 paramètre, la donnée.
+       * @return {Function}            Méthode unsubscribe
+       */</span>
+      <span class="hljs-keyword">const</span> on = (key, callback = noop) =&gt; {
+        <span class="hljs-keyword">const</span> event = name + key;
+        <span class="hljs-keyword">const</span> eventList = getEventList(key);
+        eventList.push(callback);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-72">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-72">&#182;</a>
+              </div>
+              <p>Met à jour la liste des listeners pour cette Action pour ce namespace</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        map[event] = eventList;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-73">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-73">&#182;</a>
+              </div>
+              <p>Méthode unsubscribe, ça supprimer le listener de la liste si on l’utilise.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">return</span> () =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-74">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-74">&#182;</a>
+              </div>
+              <p>Récupère la position du callback que l’on veut supprimer</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">const</span> index = map[event].indexOf(callback);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-75">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-75">&#182;</a>
+              </div>
+              <p>Suppression du callback</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          map[event].splice(index, <span class="hljs-number">1</span>);
+        };
+      };
+
+      <span class="hljs-keyword">return</span> {on, dispatch};
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-76">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-76">&#182;</a>
+              </div>
+              <p>Retourne un dispatcher avec un namespace pour cette application.
+Ainsi il n’est plus nécessaire de préfixer ses actions.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">return</span> dispatcher(<span class="hljs-string">'todoList'</span>);
+
+  });
+
+
+----------------------------------------------------------------------------</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-77">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-77">&#182;</a>
+              </div>
+              <p>On utilise le getter de module Angular</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'todoList'</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-78">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-78">&#182;</a>
+              </div>
+              <p>On déclare une nouvelle factory, qui sera notre model dans l’application.
+On va charger une dépendance pour cette factory, le <strong>dispatcher</strong>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  .factory(<span class="hljs-string">'todoListModel'</span>, (dispatcher) =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-79">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-79">&#182;</a>
+              </div>
+              <p>Initialise le model</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">let</span> list = [];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-80">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-80">&#182;</a>
+              </div>
+              <p>valeur par défault</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">let</span> currentFilterTodo = <span class="hljs-string">'todo'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-81">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-81">&#182;</a>
+              </div>
+              <p>On écoute la création de nouvelle todo, lorsque cette action arrive:</p>
+<ul>
+<li>on créé une nouvelle todo</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    dispatcher.on(<span class="hljs-string">'ADD'</span>, data =&gt; newTodo(data));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-82">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-82">&#182;</a>
+              </div>
+              <p>On écoute lorsque l’on va donner un status à une todo.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    dispatcher.on(<span class="hljs-string">'SET_STATUS'</span>, data =&gt; setStatus(data));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-83">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-83">&#182;</a>
+              </div>
+              <p>On écoute lorsque l’utilisateur souhaite supprimer une todo</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    dispatcher.on(<span class="hljs-string">'REMOVE'</span>, data =&gt; remove(data));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-84">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-84">&#182;</a>
+              </div>
+              <p>On écoute la selection d’un filtre d’affichage. Ces filtres  sont disponibles dans la sidebar.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    dispatcher.on(<span class="hljs-string">'CURRENT_FILTER'</span>, data =&gt; currentFilter(data));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-85">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-85">&#182;</a>
+              </div>
+              <p>Filtre une collection de todo par le status.
+On retourne uniquement les todos qui possèdent le status actuel:</p>
+<ul>
+<li>En cours (todo)</li>
+<li>Terminé (done)</li>
+<li>Annulé (reset)</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-comment">/**
+     * Filtre la collection pour retourner celles du status en cours d'usage
+     * @param  {Array} collection Liste de todos
+     * @return {Array}            Liste avec le filtre appliqué
+     */</span>
+    <span class="hljs-keyword">const</span> currentList = collection =&gt; collection.filter(todo =&gt; todo.status === currentFilterTodo);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-86">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-86">&#182;</a>
+              </div>
+              <p>Informe l’application d’un changement au sein de l’application
+  Input:</p>
+<pre><code>- Ajout d&#39;une nouvelle todo
+- Suppression d&#39;une todo
+- Changement de status d&#39;une todo
+- Filtrage par status
+</code></pre><p>  Output:</p>
+<pre><code>- Action CHANGE, liste de todo par status en cours d<span class="hljs-string">'usage</span>
+</code></pre>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">const</span> emitChange = () =&gt; dispatcher.dispatch(<span class="hljs-string">'CHANGE'</span>, currentList(list));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-87">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-87">&#182;</a>
+              </div>
+              <p>Création d’une nouvelle todo dans le model.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-comment">/**
+     * @param  {String} label La todo à faire
+     * @return {void}
+     */</span>
+    <span class="hljs-keyword">const</span> newTodo = label =&gt; {
+      list.push({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-88">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-88">&#182;</a>
+              </div>
+              <p>Identifiant unique</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        id: <span class="hljs-built_in">Date</span>.now(),</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-89">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-89">&#182;</a>
+              </div>
+              <p>Status par défault, En cours</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        status: <span class="hljs-string">'todo'</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-90">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-90">&#182;</a>
+              </div>
+              <p>Equivalent de label: label, c’est l’intitulé de la todo</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        label
+      });
+      emitChange();
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-91">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-91">&#182;</a>
+              </div>
+              <p>On va assigner un nouveau status à une todo</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-comment">/**
+     * @param  {Object} options.todo   TodoList de référence pour la modification
+     * @param  {String} options.status Status
+     * @return {void}
+     */</span>
+    <span class="hljs-keyword">const</span> setStatus = ({todo, status}) =&gt; {
+      list = list
+        .map(item =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-92">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-92">&#182;</a>
+              </div>
+              <p>On va modifier la todoList du model qui a le même id que celle que l’on passe</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">if</span> (todo.id === item.id) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-93">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-93">&#182;</a>
+              </div>
+              <p>On affecte à cette todo le nouveau status</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            item.status = status;
+          }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-94">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-94">&#182;</a>
+              </div>
+              <p>On retourne l’objet, c’est spécifique à Array.map</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">return</span> item;
+        });
+
+      emitChange();
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-95">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-95">&#182;</a>
+              </div>
+              <p>On va supprimer une todo dans le model, pour ça on va filtrer
+la collection de todo (le model), pour retourner toutes les todos qui répondent à cette condition</p>
+<ul>
+<li>id différent de l’id de la todo</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-comment">/**
+     * Supprime une todo dans le model
+     * @param  {Object} todo
+     * @return {void}
+     */</span>
+    <span class="hljs-keyword">const</span> remove = todo =&gt; {
+      list = list.filter(item =&gt; todo.id !== item.id);
+      emitChange();
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-96">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-96">&#182;</a>
+              </div>
+              <p>On va mettre à jour le status en cours d’utilisation.
+Ce dernier va servir à toujours afficher au sein de
+l’interface uniquement les todos qui sont du même status.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-comment">/**
+     * @param  {String} status
+     * @return {void}
+     */</span>
+    <span class="hljs-keyword">const</span> currentFilter = status =&gt; {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-97">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-97">&#182;</a>
+              </div>
+              <p>Met à jour le status en cours d’utilisation</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      currentFilterTodo = status;
+      emitChange();
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-98">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-98">&#182;</a>
+              </div>
+              <p>Remise à zero de la liste de todo au boot</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">const</span> init = () =&gt; list.length = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-99">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-99">&#182;</a>
+              </div>
+              <p>Cette factory retourne une méthode: init</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">return</span> {init};
+  });</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
